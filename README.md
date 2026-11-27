@@ -1,24 +1,21 @@
-# SM Camper 0.3 — El camino es parte del viaje
+# SM Camper 0.3.1 — El camino es parte del viaje
 
-Actualización de la aplicación original 0.2, sin servicios externos obligatorios. Los siete archivos se publican en la raíz del mismo repositorio GitHub Pages; no hace falta reinstalar.
+Actualización de mantenimiento basada en los siete archivos del ZIP 0.3, sin cambiar el almacenamiento `sm-camper-v1` ni las unidades internas de las duraciones (minutos). No requiere reinstalación ni servicios nuevos.
 
-## Antes de actualizar
-1. En la versión 0.2 del ordenador, Ajustes → Exportar datos. Guarda una copia con nombre identificable, por ejemplo SM_Camper_02_PC.json. Si hay datos propios en el móvil, haz otra copia allí.
-2. Extrae el ZIP 0.3. En el repositorio sm-camper, Add file → Upload files. Selecciona los siete archivos extraídos (incluido style.css, no styles.css) y confirma Commit changes en main. No subas copias JSON personales.
-3. En Actions verifica el despliegue. Abre la misma URL en el navegador habitual, actualiza (Ctrl+F5), y comprueba la versión 0.3 y los datos. En el móvil abre con conexión, cierra y vuelve a abrir si sigue la versión antigua. No borres el almacenamiento ni desinstales.
+## Cambios
+- Conducción, comidas, descansos, duración a pie y duración total de cada visita/evento: campos separados de horas y minutos (0–59 minutos), con total automático y consulta en horas/minutos. Vacío sigue significando sin estimar; cero es un dato válido. La duración a pie no se suma de nuevo al total de la visita.
+- Consulta: viajes previstos y realizados, jornadas plegadas inicialmente; viajes en curso, abiertas las jornadas de la fecha local actual (si no coincide ninguna, todas plegadas). Se mantienen los controles individuales y generales.
+- Iconos y texto para servicios seleccionados de alojamientos. Notas antiguas intactas.
+- Caché 0.3.1, archivos CSS/JS con versión, revisión de actualizaciones al recuperar conexión/visibilidad y aviso de recarga cuando cambia el controlador, sin recargar automáticamente ni descartar cambios de edición.
+- Se acota la actualización de avisos de dificultad a las fichas editables.
 
-## Novedades
-- Jornadas verdes, visitas/eventos azules, alojamiento ocre. Consulta independiente de edición; plegado individual y global.
-- Turismo o camper por viaje; el perfil de la Renault Master permanece separado.
-- Desplazamiento o estancia; tiempos manuales en minutos para conducción, comidas, descansos y duración de cada actividad. El total no suma de nuevo los minutos a pie; indica datos sin estimar. Una estancia no suma conducción; revisar avisos de incoherencia.
-- Reordenación conserva fechas por defecto. Opción de reasignar fechas cronológicamente usando las fechas existentes, no inventa fechas nuevas. Las reservas/eventos viajan con la jornada: verificar sus fechas reales tras reordenar.
-- Visitas/eventos: tipo, hora, duración, horario, precio y web. Alojamiento: hotel/apartamento/hostal, prioridad, reserva, servicios, teléfono, web. Los servicios y notas antiguas se mantienen.
-- Dimensiones hasta 0.001 m, estado confirmado/aproximado/sin confirmar, crucero orientativo 90 km/h ajustable, combustible y distintivo ambiental. El campo antiguo maxSpeed se conserva internamente; no se interpreta como velocidad de crucero.
-- TomTom Plan se abre como acceso externo general, no precarga ni transmite rutas ni usa API. Google Maps continúa con origen/destino y ubicaciones.
-- Mismo localStorage (sm-camper-v1) y formato de copia JSON ampliado. Importar sustituye datos, no fusiona. No hay sincronización; exportar en PC y transferir/importar al móvil con precaución (respaldo previo).
+## Actualización
+1. Exporta una copia de seguridad de cada dispositivo con datos propios. Conserva copias antiguas y ZIP 0.3.
+2. Extrae el ZIP 0.3.1; sube los siete archivos de la raíz al repositorio sm-camper mediante Add file → Upload files. Commit directly to main, Commit changes. No subas el ZIP ni las copias JSON personales.
+3. En Actions comprueba que el nuevo despliegue acaba en verde. Abre la misma URL en Chrome, Ctrl+F5, verifica versión y datos. En el móvil abre conectado, cierra y vuelve a abrir si es necesario. Si aparece el aviso de actualización, guarda cambios y recarga. No desinstales ni borres datos.
 
-## Pruebas hechas
-Sintaxis app.js y sw.js y manifiesto válidos. Chromium, con HTML/CSS/JS originales de la nueva versión cargados inline y localStorage simulado: compatibilidad con datos 0.2, consulta y edición, desplegado, reordenación y avisos, cálculo de tiempos, evento, hotel, servicios, estancia de 0 km, guardado/recarga simulada, dimensiones al milímetro, exportación e importación con ejemplo 0.1. Sin errores JS en esos casos. Consulta y edición de ejemplo sin desbordamiento horizontal a 360 px. La navegación a un servidor de pruebas fue bloqueada por el entorno; no se ha verificado el service worker real, el funcionamiento offline, ni la instalación/actualización en GitHub Pages. Tampoco se verificó la apertura efectiva de TomTom ni el envío al navegador. No se ha modificado GitHub.
+## Verificación
+Sintaxis de JS y manifiesto válidos. Pruebas en Chromium con HTML/CSS/JS cargados inline, almacenamiento simulado y datos de ejemplo 0.3: consulta plegada en previsto y realizado, apertura de jornada actual en curso, conversión y edición de duraciones, totales, estancia con cero, distinción vacío/cero, iconos, guardado compatible, importación de JSON de ejemplo, ancho 360 px en consulta/edición, sin errores JS en esos casos. Navegación al servidor local bloqueada por el entorno; service worker real, instalación, actualización real y uso offline pendientes de probar en dispositivos. GitHub no modificado.
 
-## Pruebas en dispositivos
-1. Versión y conservación de viajes, visitas y ficha. 2. Consulta y plegado. 3. Editar y guardar. 4. Turismo, estancia y evento. 5. Tiempos y reordenación. 6. Alojamiento y reservas. 7. Abrir TomTom/Google Maps. 8. Copias de seguridad antiguas en ventana privada. 9. Offline en PC y móvil. 10. Actualización y uso móvil sin desplazamiento horizontal. Mantén el ZIP 0.2 y las copias anteriores hasta completar las pruebas.
+## Pruebas pendientes antes del BEC
+Confirmar versión y datos del PC; probar campos de tiempo, plegado e iconos; actualización móvil; transferencia PC→móvil mediante copia (importar sustituye todo, no combina; respaldar móvil antes); abrir la app móvil en modo avión y consultar el viaje. No hay sincronización automática ni cálculo TomTom API/GPX; los enlaces externos requieren conexión.
